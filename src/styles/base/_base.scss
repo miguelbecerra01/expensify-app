@@ -1,0 +1,31 @@
+/*partial file (starts with _) */
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif
+}
+
+h1 {
+    font-size: $m-size; //16px
+}
+
+p {
+    font-size: $m-size;
+}
+
+button {
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+h3 {
+    font-size: $m-size;
+}
+
