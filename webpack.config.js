@@ -6,7 +6,9 @@ const publicPath = path.join(__dirname, 'public');
 //with this we can export the module and can be used in another file
 module.exports = {
     //entry: './src/app.js',
-    entry: './src/playground/redux-101.js',
+    entry: './src/playground/redux-expensify.js', 
+    //entry: './src/playground/redux-101-destructuring.js',
+   // entry: './src/playground/destructuring.js',
     output: {
         path: publicPath,
         filename: 'bundle.js'
