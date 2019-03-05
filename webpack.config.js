@@ -5,7 +5,8 @@ const publicPath = path.join(__dirname, 'public');
 
 //with this we can export the module and can be used in another file
 module.exports = {
-    entry: './src/app.js',
+    //entry: './src/app.js',
+    entry: './src/playground/redux-101.js',
     output: {
         path: publicPath,
         filename: 'bundle.js'
@@ -37,7 +38,8 @@ module.exports = {
     //https://webpack.js.org/configuration/dev-server/
     //replacing for live-server
     devServer: {
-        contentBase: publicPath
+        contentBase: publicPath,
+        historyApiFallback:true
     }
 
 };
