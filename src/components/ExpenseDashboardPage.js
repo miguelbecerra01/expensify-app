@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ExpenseList from './ExpenseList';
 
 const ExpenseDashboardPage = () => (
     <div>
-        Some text
+        <ExpenseList />
     </div>
 );
 
