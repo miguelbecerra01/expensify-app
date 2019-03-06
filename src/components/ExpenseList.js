@@ -1,25 +1,25 @@
 import React from 'react';
 //connect -> connect the component with the redux store
 import { connect } from 'react-redux';
+import ExpenseListItem from './ExpenseListItem';
 
+import getVisibleExpenses from '../selectors/expenses';
 
+//<ExpenseListItem key={index} {...expense}/> spread all the properties in the Expenselistcomponent
 const ExpenseList = (props) => (
     <div>
-        <h1>Expense List</h1>
-        {props.expenses.length}
-        <ul>
-            <p>Text filter: {props.filters.text}</p> 
-            {props.expenses.map((expense, index) => (
-                <li key={index}>{expense.description}</li>
-            ))}
-        </ul>
+        <h2>Expense List</h2>
+        
+        {props.expenses.map((expense) => (
+            <ExpenseListItem key={expense.id} {...expense} />
+        ))}
+
     </div>
 );
 
 const mapStateToProps = (state) => {
     return {
-        expenses: state.expenses,
-        filters: state.filters
+        expenses: getVisibleExpenses(state.expenses, state.filters)
     };
 };
 

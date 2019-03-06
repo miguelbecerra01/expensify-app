@@ -8,6 +8,11 @@ const filtersReducerDefaultState = {
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
     switch (action.type) {
+        case 'SET_ID_FILTER':
+            return {
+                ...state,
+                id: action.id
+            };
         case 'SET_TEXT_FILTER':
             //return a new object overriding filtersReducerDefaultState to the action
             //which is the text value
