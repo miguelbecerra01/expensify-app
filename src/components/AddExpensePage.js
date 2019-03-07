@@ -7,7 +7,7 @@ import { addExpense } from '../actions/expenses';
 const AddExpensePage = (props) => (
     <div>
         <h1>Add Expense Page</h1>
-        <ExpenseForm onSubmit={(expense) => {
+        <ExpenseForm submitType={'Add'} onSubmit={(expense) => {
             props.dispatch(addExpense(expense));
             //go back to dashboard
             props.history.push('/');

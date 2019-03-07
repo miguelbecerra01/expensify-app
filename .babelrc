@@ -2,11 +2,11 @@
 //https://babeljs.io/docs/en/7.1.0/babel-plugin-transform-class-properties
 {
     "presets":[
-        "env",
-        "react"
+        "@babel/preset-env",
+        "@babel/preset-react"
     ],
     "plugins": [
-        "transform-class-properties",
-        "transform-object-rest-spread"
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-object-rest-spread"
     ]
 }

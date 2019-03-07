@@ -4,19 +4,32 @@ import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
-const now = moment();
-console.log(now.format('MMMM Do, YYYY'));
+// const now = moment();
+// console.log(now.format('MMMM Do, YYYY'));
 
 //its a class because we need to use component state
-export default class ExpenseForm extends React.Component {    
-    state = {
-        description: '',
-        note: '',
-        amount: '',
-        createdAt: moment(),
-        calendarFocused: false,
-        error: false
-    };
+export default class ExpenseForm extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            description: props.expense ? props.expense.description : '',
+            note: props.expense ? props.expense.note : '',
+            amount: props.expense ? (props.expense.amount / 100).toString() : '',
+            createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+            calendarFocused: false,
+            error: false,
+            submitType: props.submitType === 'Add' ? 'Add' : 'Edit'
+        };
+    }
+    // state = {
+    //     description: '',
+    //     note: '',
+    //     amount: '',
+    //     createdAt: moment(),
+    //     calendarFocused: false,
+    //     error: false
+    // };
     onDescriptionChange = (e) => {
         const description = e.target.value;
         this.setState(() => {
@@ -69,7 +82,7 @@ export default class ExpenseForm extends React.Component {
     render() {
         return (
             <div>
-               
+
                 {this.state.error && <p>Please provide description and amount.</p>}
                 <form onSubmit={this.onSubmit}>
                     <input
@@ -94,9 +107,12 @@ export default class ExpenseForm extends React.Component {
                         isOutsideRange={() => false} />
                     <textarea
                         placeholder="Add a note for your expense (optional)"
-                        onChange={this.onNoteChange}>
+                        onChange={this.onNoteChange}
+                        value={this.state.note}
+                    >
+
                     </textarea>
-                    <button >Add Expense</button>
+                    <button >{this.state.submitType} Expense</button>
                 </form>
             </div>
         );
