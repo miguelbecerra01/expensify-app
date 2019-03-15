@@ -8,7 +8,8 @@
     "build": "webpack --mode development",
     "dev-server": "webpack-dev-server --mode development",
     "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "test": "jest"
+    "test": "jest",
+    "test-watch": "jest --watchAll --env=node --no-cache  --maxWorkers=4"
   },
   "dependencies": {
     "@babel/cli": "^7.2.3",
