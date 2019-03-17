@@ -6,14 +6,15 @@ import ExpenseListItem from './ExpenseListItem';
 import getVisibleExpenses from '../selectors/expenses';
 
 //<ExpenseListItem key={index} {...expense}/> spread all the properties in the Expenselistcomponent
-const ExpenseList = (props) => (
+export const ExpenseList = (props) => (
     <div>
-        <h2>Expense List</h2>
-        
-        {props.expenses.map((expense) => (
-            <ExpenseListItem key={expense.id} {...expense} />
-        ))}
-
+        {props.expenses.length === 0 ? (
+            <p>No expenses yet ;-(</p>
+        ) : (
+                props.expenses.map((expense) => (
+                    <ExpenseListItem key={expense.id} {...expense} />
+                ))
+            )}
     </div>
 );
 

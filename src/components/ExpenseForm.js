@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
 
 // const now = moment();
 // console.log(now.format('MMMM Do, YYYY'));
@@ -59,15 +58,15 @@ export default class ExpenseForm extends React.Component {
             this.setState(() => ({ createdAt }));
         }
     };
-    onCalendarFocusChange = ({ focused }) => {
+    onFocusChange = ({ focused }) => {
         this.setState(() => ({ calendarFocused: focused }));
     };
     onSubmit = (e) => {
         e.preventDefault();
         if (!this.state.description || !this.state.amount) {
-            this.setState(() => ({ error: true }));
+            this.setState(() => ({ error: 'Please provide description and amount.' }));
         } else {
-            this.setState(() => ({ error: false }));
+            this.setState(() => ({ error: '' }));
             //call to the parent method in AddExpensePage, returning the value
             this.props.onSubmit({
                 description: this.state.description,
@@ -83,10 +82,11 @@ export default class ExpenseForm extends React.Component {
         return (
             <div>
 
-                {this.state.error && <p>Please provide description and amount.</p>}
+                {this.state.error && <p>{this.state.error}</p>}
                 <form onSubmit={this.onSubmit}>
                     <input
                         type="text"
+                        name="description"
                         placeholder="Description"
                         autoFocus
                         value={this.state.description}
@@ -100,7 +100,7 @@ export default class ExpenseForm extends React.Component {
                         date={this.state.createdAt}
                         onDateChange={this.onDateChange}
                         focused={this.state.calendarFocused}
-                        onFocusChange={this.onCalendarFocusChange}
+                        onFocusChange={this.onFocusChange}
                         numberOfMonths={1}
                         firstDayOfWeek={1}
                         small={true}
