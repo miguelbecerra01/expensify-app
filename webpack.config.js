@@ -3,7 +3,7 @@
 const path = require('path');
 //https://github.com/webpack-contrib/mini-css-extract-plugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const publicPath = path.join(__dirname, 'public');
+const publicPath = path.join(__dirname, 'public', 'dist');
 
 
 //with this we can export the module and can be used in another file
@@ -59,8 +59,9 @@ module.exports = (env) => {
         //https://webpack.js.org/configuration/dev-server/
         //replacing for live-server
         devServer: {
-            contentBase: publicPath,
-            historyApiFallback: true
+            contentBase: path.join(__dirname, 'public'),
+            historyApiFallback: true,
+            publicPath: '/dist/'
         }
     };
 

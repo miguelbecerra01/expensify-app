@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "serve": "live-server public/",
     "build:dev": "webpack --mode development",
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server --mode development",
@@ -21,13 +20,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "css-loader": "^2.1.0",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.11.2",
-    "enzyme-to-json": "^3.3.5",
     "express": "^4.16.4",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "jest": "^24.1.0",
-    "live-server": "^1.2.1",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
     "normalize.css": "^8.0.1",
@@ -38,20 +31,24 @@
     "react-modal": "^3.8.1",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
-    "react-test-renderer": "^16.8.4",
     "redux": "^4.0.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "uuid": "^3.3.2",
     "validator": "^10.11.0",
-    "webpack": "^4.29.6",
-    "webpack-dev-server": "^3.2.1"
+    "webpack": "^4.29.6"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
     "babel-loader": "^8.0.5",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
+    "enzyme-to-json": "^3.3.5",
     "mini-css-extract-plugin": "^0.5.0",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "jest": "^24.1.0",
+    "react-test-renderer": "^16.8.4",
+    "webpack-dev-server": "^3.2.1"
   }
 }
