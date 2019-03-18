@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "serve": "live-server public/",
-    "build": "webpack --mode development",
+    "build:dev": "webpack --mode development",
+    "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server --mode development",
     "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
     "test": "jest --config=jest.config.json",
@@ -21,6 +22,7 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "enzyme-to-json": "^3.3.5",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "jest": "^24.1.0",
     "live-server": "^1.2.1",
     "moment": "^2.24.0",
@@ -46,6 +48,7 @@
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
     "babel-loader": "^8.0.5",
+    "mini-css-extract-plugin": "^0.5.0",
     "webpack-cli": "^3.2.3"
   }
 }
