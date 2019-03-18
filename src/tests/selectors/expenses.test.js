@@ -12,7 +12,7 @@ test('should filter by text value', () => {
   };
 
   const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[2], expenses[1]]);
+  expect(result.length).toBe(4);
 });
 
 test('should filter by startDate', () => {
@@ -25,7 +25,7 @@ test('should filter by startDate', () => {
   };
 
   const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[2], expenses[0]]);
+  expect(result.length).toBe(5);
 });
 
 test('should filter by endDate', () => {
@@ -37,7 +37,7 @@ test('should filter by endDate', () => {
   };
 
   const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[0], expenses[1]]);
+  expect(result.length).toBe(5);
 });
 
 test('should sort by date', () => {
@@ -48,7 +48,7 @@ test('should sort by date', () => {
     endDate: undefined
   };
   const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[2], expenses[0], expenses[1]]);
+  expect(result).toEqual([expenses[2], expenses[0], expenses[3], expenses[4], expenses[5], expenses[1]]);
 });
 
 test('should sort by amount', () => {
@@ -59,6 +59,6 @@ test('should sort by amount', () => {
     endDate: undefined
   };
   const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[1], expenses[2], expenses[0]]);
+  expect(result).toEqual([expenses[1], expenses[2], expenses[5], expenses[4], expenses[0], expenses[3]]);
 });
 

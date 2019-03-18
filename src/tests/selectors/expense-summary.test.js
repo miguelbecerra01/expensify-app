@@ -18,7 +18,8 @@ test('should correcly add up a single expense', () => {
 });
 
 test('should correcyly add up multiple expenses', () => {
-    const total = expenses[0].amount + expenses[1].amount + expenses[2].amount;
+
+    const total = expenses.reduce((sum, expense) => sum + expense.amount, 0);
 
     const result = selectExpenseTotal(expenses);
 

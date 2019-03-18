@@ -25,5 +25,26 @@ export default [
     createdAt: moment(0)
       .add(4, 'days')
       .valueOf()
+  },
+  {
+    id: '4',
+    description: 'Bus Ticket',
+    note: '',
+    amount: 100,
+    createdAt: moment()
+  },
+  {
+    id: '5',
+    description: 'Water Bottle',
+    note: '',
+    amount: 200,
+    createdAt: moment()
+  },
+  {
+    id: '6',
+    description: 'Lunch',
+    note: '',
+    amount: 300,
+    createdAt: moment()
   }
 ];

@@ -34,5 +34,29 @@ exports[`should render ExpenseList with expenses 1`] = `
     key="3"
     note="month payment"
   />
+  <Connect(ExpenseListItem)
+    amount={100}
+    createdAt={"1970-01-01T00:00:00.000Z"}
+    description="Bus Ticket"
+    id="4"
+    key="4"
+    note=""
+  />
+  <Connect(ExpenseListItem)
+    amount={200}
+    createdAt={"1970-01-01T00:00:00.000Z"}
+    description="Water Bottle"
+    id="5"
+    key="5"
+    note=""
+  />
+  <Connect(ExpenseListItem)
+    amount={300}
+    createdAt={"1970-01-01T00:00:00.000Z"}
+    description="Lunch"
+    id="6"
+    key="6"
+    note=""
+  />
 </div>
 `;
