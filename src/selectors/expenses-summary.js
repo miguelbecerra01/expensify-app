@@ -1,4 +1,4 @@
-const getExpensesTotal = (expenses) => {
+export default (expenses) => {
     if (!expenses) {
         return {
             quantity: 0,
@@ -6,13 +6,10 @@ const getExpensesTotal = (expenses) => {
         };
     }
 
-    const total = expenses.reduce((a, b) => {
-        return a + b.amount;
-    }, 0);
+    const total = expenses.reduce((sum, expense) => (sum + expense.amount), 0);
 
     const quantity = expenses.length;
 
     return { total, quantity };
 };
 
-export default getExpensesTotal;

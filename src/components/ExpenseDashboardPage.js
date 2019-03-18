@@ -6,14 +6,14 @@ moment.locale('es');
 
 import ExpenseList from './ExpenseList';
 import ExpenseListFilters from './ExpenseListFilters';
-import ExpensesTotal from './ExpensesTotal';
+import ExpensesSummary from './ExpensesSummary';
 
 const ExpenseDashboardPage = () => {
 
     return (
         <div>
             <hr></hr>
-            <ExpensesTotal />
+            <ExpensesSummary />
             <ExpenseListFilters />
             <ExpenseList />
         </div>
