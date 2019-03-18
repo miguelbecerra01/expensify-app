@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import * as moment from 'moment/moment';
+moment.locale('es');
+
 import AppRouter from './routers/AppRouter';
 //provide the store to all the components of the app
 import { Provider } from 'react-redux';
 
 import configureStore from './store/configureStore';
+
 
 import './styles/styles.scss';
 import 'normalize.css/normalize.css';

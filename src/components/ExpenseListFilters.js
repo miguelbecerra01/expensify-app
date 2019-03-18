@@ -10,7 +10,6 @@ export class ExpenseListFilters extends React.Component {
         calendarFocused: null
     };
     onDatesChange = ({ startDate, endDate }) => {
-        //moment.locale('es');
         this.props.setStartDate(startDate);
         this.props.setEndDate(endDate);
     };

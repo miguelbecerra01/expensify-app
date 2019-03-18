@@ -3,13 +3,14 @@
 const path = require('path');
 //https://github.com/webpack-contrib/mini-css-extract-plugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const publicPath = path.join(__dirname, 'public', 'dist');
 
+const publicPath = path.join(__dirname, 'public', 'dist');
 
 //with this we can export the module and can be used in another file
 module.exports = (env) => {
     const isProduction = env === 'production';
     const CSSExtract = new MiniCssExtractPlugin({ filename: 'styles.css' });
+    const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
     return {
         entry: './src/app.js',
@@ -51,7 +52,10 @@ module.exports = (env) => {
             }]
         },
         plugins: [
-            CSSExtract
+            CSSExtract,
+            new MomentLocalesPlugin({
+                localesToKeep: ['es', 'en']
+            })
         ],
         //set sourcemap to debug where in the files were an error and not show just bundle.js line 22xxx
         //https://webpack.js.org/configuration/devtool/
