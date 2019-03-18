@@ -5,14 +5,14 @@ export default [
     id: '1',
     description: 'Gum',
     note: '',
-    amount: 2000,
+    amount: 195,
     createdAt: 0
   },
   {
     id: '2',
     description: 'Rent',
     note: '',
-    amount: 5000,
+    amount: 109500,
     createdAt: moment(0)
       .subtract(4, 'days')
       .valueOf()
@@ -21,7 +21,7 @@ export default [
     id: '3',
     description: 'Credit Card',
     note: 'month payment',
-    amount: 30000,
+    amount: 4500,
     createdAt: moment(0)
       .add(4, 'days')
       .valueOf()
