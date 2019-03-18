@@ -4,6 +4,18 @@
 //Prop manipulation
 //Abstract state
 
+
+/*
+//example: action/expenses.js as 4 exported functions
+//with this you dump all the functions into one object
+//so then you can call it from there...
+import * as expensesActions from '../actions/expenses';
+expensesActions.addExpense
+expensesActions.editExpense...and so on
+
+*/
+
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
