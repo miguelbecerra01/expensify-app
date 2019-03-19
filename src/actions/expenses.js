@@ -44,6 +44,7 @@ export const addExpense = (expense) => ({
 
 export const startAddExpense = (expenseData = {}) => {
     //will work only because we added the redux middleware using redux-thunk
+    //return is used to proportionate the component a promise
     return (dispatch) => {
         //extract and create the parameters from the object expenseData -> destructuring
         const {
@@ -88,6 +89,17 @@ export const editExpense = (id, updates) => ({
     id,
     updates
 });
+
+//edit expense from firebase
+export const startEditExpense = (id, updates) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).update(updates).then(() => {
+            //edit from redux store
+            dispatch(editExpense(id, updates));
+        });
+
+    };
+};
 
 //SET_EXPENSES
 export const setExpenses = (expenses) => ({
