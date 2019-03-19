@@ -1,10 +1,22 @@
 //entry -> output
 //https://webpack.js.org/#bundle-it
 const path = require('path');
+const webpack = require('webpack');
 //https://github.com/webpack-contrib/mini-css-extract-plugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const publicPath = path.join(__dirname, 'public', 'dist');
+
+//https://www.npmjs.com/package/cross-env
+const env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+//https://www.npmjs.com/package/dotenv
+
+if (env === 'test') {
+    require('dotenv').config({ path: '.env.test' });
+} else if (env === 'development') {
+    require('dotenv').config({ path: '.env.development' });
+}
 
 //with this we can export the module and can be used in another file
 module.exports = (env) => {
@@ -55,6 +67,14 @@ module.exports = (env) => {
             CSSExtract,
             new MomentLocalesPlugin({
                 localesToKeep: ['es', 'en']
+            }),
+            new webpack.DefinePlugin({
+                'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
+                'process.env.FIREBASE_AUTH_DOMAIN': JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
+                'process.env.FIREBASE_DATABASE_URL': JSON.stringify(process.env.FIREBASE_DATABASE_URL),
+                'process.env.FIREBASE_PROJECT_ID': JSON.stringify(process.env.FIREBASE_PROJECT_ID),
+                'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
+                'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID),
             })
         ],
         //set sourcemap to debug where in the files were an error and not show just bundle.js line 22xxx
