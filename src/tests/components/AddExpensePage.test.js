@@ -7,12 +7,12 @@ import expenses from '../fixtures/expenses';
 
 
 //Runs a function before each of the tests in this file runs. 
-let addExpenseSpy, historySpy, wrapper;
+let startAddExpense, historySpy, wrapper;
 
 beforeEach(() => {
-    addExpenseSpy = jest.fn(); //tells that is a jest function to mock
+    startAddExpense = jest.fn(); //tells that is a jest function to mock
     historySpy = { push: jest.fn() };
-    wrapper = shallow(<AddExpensePage addExpense={addExpenseSpy} history={historySpy} />);
+    wrapper = shallow(<AddExpensePage startAddExpense={startAddExpense} history={historySpy} />);
 });
 
 test('should render AddExpensePage correctly', () => {
@@ -22,5 +22,5 @@ test('should render AddExpensePage correctly', () => {
 test('should handle onSubmit', () => {
     wrapper.find('ExpenseForm').prop('onSubmit')(expenses[1]);
     expect(historySpy.push).toHaveBeenLastCalledWith('/');
-    expect(addExpenseSpy).toHaveBeenLastCalledWith(expenses[1]);
+    expect(startAddExpense).toHaveBeenLastCalledWith(expenses[1]);
 });

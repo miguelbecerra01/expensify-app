@@ -1,3 +1,7 @@
+//https://firebase.google.com/docs/web/setup?authuser=0
+//https://firebase.google.com/docs/reference/js/firebase.database?authuser=0
+//https://firebase.google.com/docs/reference/js/firebase.database.Reference?authuser=0
+//https://www.youtube.com/watch?v=v_hR4K4auoQ&list=PLl-K7zZEsYLluG5MCVEzXAQ7ACZBCuZgZ
 //* is take all the named functions and call it firebase, its because it doesnt have
 //a function as default
 import * as firebase from 'firebase';
@@ -15,9 +19,6 @@ const config = {
 
 firebase.initializeApp(config);
 
+const database = firebase.database();
 
-//Store to the Real Time Database
-firebase.database().ref().set({
-    name: 'Miguel Becerra'
-});
-
+export { firebase, database as default };

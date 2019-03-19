@@ -18,6 +18,7 @@ import 'react-dates/lib/css/_datepicker.css';
 //add firebase file to the app
 import './firebase/firebase';
 
+// import './playground/promises';
 
 const store = configureStore();
 

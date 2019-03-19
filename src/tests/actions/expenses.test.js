@@ -1,8 +1,21 @@
 import {
+    startAddExpense,
     addExpense,
     editExpense,
     removeExpense
 } from "../../actions/expenses";
+
+import expenses from '../fixtures/expenses';
+
+//let mock redux functions
+import configureMockStore from 'redux-mock-store';
+//middleware for redux
+import thunk from 'redux-thunk';
+
+import database from '../../firebase/firebase';
+
+const createMockStore = configureMockStore([thunk]);
+
 
 test("shoud set up remove expense action object", () => {
     const action = removeExpense({
@@ -30,33 +43,67 @@ test("should set up edit expense action object", () => {
 });
 
 test("should setup add expense action object with provided values", () => {
-    const expenseData = {
-        description: "Rent",
-        amount: 1095000,
-        createdAt: 1000,
-        note: "This was the last mont rent"
-    };
-
-    const action = addExpense(expenseData);
+    const action = addExpense(expenses[2]);
     expect(action).toEqual({
         type: "ADD_EXPENSE",
-        expense: {
-            ...expenseData,
-            id: expect.any(String)
-        }
+        expense: expenses[2]
     });
 });
 
-test("shoud setup add expense action object with default values", () => {
-    const action = addExpense();
-    expect(action).toEqual({
-        type: "ADD_EXPENSE",
-        expense: {
-            description: "",
-            note: "",
-            amount: 0,
-            createdAt: 0,
-            id: expect.any(String)
-        }
-    });
+//asyncronous test cases -> use the done parameter
+//jest will wait until find done()
+test('should add expense to database and store', (done) => {
+    const store = createMockStore({})
+    const expenseData = {
+        description: 'mouse',
+        amount: 30,
+        note: 'this is better',
+        createdAt: 2000
+    };
+    //async call
+    store.dispatch(startAddExpense(expenseData)).then(() => {
+        const actions = store.getActions();
+        //expect that actions[addExpense] got called
+        expect(actions[0]).toEqual({
+            type: 'ADD_EXPENSE',
+            expense: {
+                id: expect.any(String),
+                ...expenseData
+            }
+        });
+        //return a promise
+        return database.ref(`expenses/${actions[0].expense.id}`).once('value');
+
+    }).then((snapshot) => {
+        expect(snapshot.val()).toEqual(expenseData);
+        done(); //forzing jest to wait until done is called
+    })
+});
+
+test('should add expense with defaults to database and store', (done) => {
+    const store = createMockStore({});
+    const expenseData = {
+        description: '',
+        note: '',
+        amount: 0,
+        createdAt: 0
+    };
+    //async call
+    store.dispatch(startAddExpense({})).then(() => {
+        const actions = store.getActions();
+        //expect that actions[addExpense] got called
+        expect(actions[0]).toEqual({
+            type: 'ADD_EXPENSE',
+            expense: {
+                id: expect.any(String),
+                ...expenseData
+            }
+        });
+        //return a promise
+        return database.ref(`expenses/${actions[0].expense.id}`).once('value');
+
+    }).then((snapshot) => {
+        expect(snapshot.val()).toEqual(expenseData);
+        done(); //forzing jest to wait until done is called
+    })
 });
