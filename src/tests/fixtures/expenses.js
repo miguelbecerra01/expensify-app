@@ -31,20 +31,20 @@ export default [
     description: 'Bus Ticket',
     note: '',
     amount: 100,
-    createdAt: moment()
+    createdAt: moment(0).valueOf()
   },
   {
     id: '5',
     description: 'Water Bottle',
     note: '',
     amount: 200,
-    createdAt: moment()
+    createdAt: moment(0).valueOf()
   },
   {
     id: '6',
     description: 'Lunch',
     note: '',
     amount: 300,
-    createdAt: moment()
+    createdAt: moment(0).valueOf()
   }
 ];
