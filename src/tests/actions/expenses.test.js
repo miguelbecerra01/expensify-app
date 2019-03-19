@@ -4,7 +4,8 @@ import {
     editExpense,
     removeExpense,
     setExpenses,
-    startSetExpenses
+    startSetExpenses,
+    startRemoveExpense
 } from "../../actions/expenses";
 
 import expenses from '../fixtures/expenses';
@@ -57,6 +58,34 @@ test("should setup add expense action object with provided values", () => {
         expense: expenses[2]
     });
 });
+
+
+test('should remove expense from firebase', (done) => {
+    const store = createMockStore({});
+    const id = expenses[2].id;
+
+    //call startRemoveExpense with the id for deleting it
+    store.dispatch(startRemoveExpense({ id })).then(() => {
+
+        const actions = store.getActions();
+
+        expect(actions[0]).toEqual({
+            type: 'REMOVE_EXPENSE',
+            id
+        });
+
+        //get the expense with the id of the recently deleted expense
+        return database.ref(`expenses/${id}`).once('value');
+
+
+    }).then((snapshot) => {
+        //the snapshot is null so, expect to be false.
+        expect(snapshot.val()).toBeFalsy();
+        done();
+    });
+});
+
+
 
 //asyncronous test cases -> use the done parameter
 //jest will wait until find done()
@@ -125,7 +154,7 @@ test('should setup set expense action object with data', () => {
     });
 });
 
-test('should fetch teh expeses from firebase', (done) => {
+test('should fetch the expeses from firebase', (done) => {
     const store = createMockStore({});
     store.dispatch(startSetExpenses()).then(() => {
         const actions = store.getActions();
