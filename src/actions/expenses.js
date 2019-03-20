@@ -45,7 +45,10 @@ export const addExpense = (expense) => ({
 export const startAddExpense = (expenseData = {}) => {
     //will work only because we added the redux middleware using redux-thunk
     //return is used to proportionate the component a promise
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        //get the id of the looged in user
+        const uid = getState().auth.uid;
+
         //extract and create the parameters from the object expenseData -> destructuring
         const {
             description = '',
@@ -57,7 +60,7 @@ export const startAddExpense = (expenseData = {}) => {
         const expense = { description, note, amount, createdAt };
 
         //with return we add the hability to make promises chaining
-        return database.ref('expenses').push(expense).then((ref) => {
+        return database.ref(`users/${uid}/expenses`).push(expense).then((ref) => {
             dispatch(addExpense({
                 id: ref.key,
                 ...expense
@@ -69,8 +72,9 @@ export const startAddExpense = (expenseData = {}) => {
 
 // REMOVE_EXPENSE 
 export const startRemoveExpense = ({ id }) => {
-    return (dispatch) => {
-        return database.ref(`expenses/${id}`).remove().then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
             dispatch(removeExpense({ id }));
         });
     };
@@ -92,8 +96,9 @@ export const editExpense = (id, updates) => ({
 
 //edit expense from firebase
 export const startEditExpense = (id, updates) => {
-    return (dispatch) => {
-        return database.ref(`expenses/${id}`).update(updates).then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
             //edit from redux store
             dispatch(editExpense(id, updates));
         });
@@ -109,9 +114,10 @@ export const setExpenses = (expenses) => ({
 
 //START_SET_EXPENSES -> Fetch the expenses from firebase
 export const startSetExpenses = () => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         //with return we give access to 'then' in app.js 
-        return database.ref('expenses')
+        return database.ref(`users/${uid}/expenses`)
             .once('value')
             .then((snapshot) => {
                 const expenses = [];
