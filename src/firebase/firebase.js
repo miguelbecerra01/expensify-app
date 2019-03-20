@@ -2,6 +2,7 @@
 //https://firebase.google.com/docs/reference/js/firebase.database?authuser=0
 //https://firebase.google.com/docs/reference/js/firebase.database.Reference?authuser=0
 //https://www.youtube.com/watch?v=v_hR4K4auoQ&list=PLl-K7zZEsYLluG5MCVEzXAQ7ACZBCuZgZ
+//
 //* is take all the named functions and call it firebase, its because it doesnt have
 //a function as default
 import * as firebase from 'firebase';
@@ -21,4 +22,9 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-export { firebase, database as default };
+//https://firebase.google.com/docs/reference/js/firebase.auth?authuser=0
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+
+
+
+export { firebase, googleAuthProvider, database as default };

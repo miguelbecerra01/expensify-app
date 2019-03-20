@@ -4,7 +4,14 @@ import { connect } from 'react-redux';
 import { startAddExpense } from '../actions/expenses';
 
 export class AddExpensePage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: false
+        }
+    };
     onSubmit = (expense) => {
+        this.setState(() => ({ isLoading: true }));
 
         new Promise((resolve, reject) => {
             resolve(this.props.startAddExpense(expense));
@@ -15,8 +22,12 @@ export class AddExpensePage extends React.Component {
     render() {
         return (
             <div>
-                <h1>Add Expense Page</h1>
-                <ExpenseForm submitType={'Add'} onSubmit={this.onSubmit} />
+                <h1>Add Expense Pages</h1>
+                {this.state.isLoading ?
+                    <div><img src="/images/loading.gif" width="100px" height="100px" /></div> :
+                    <ExpenseForm submitType={'Add'} isLoading={this.isLoading} onSubmit={this.onSubmit} />
+                }
+
             </div>
         );
     }

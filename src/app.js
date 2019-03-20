@@ -1,25 +1,31 @@
+//APP
+//app.js runs first than the other files, is the initial point
+//loads in each refresh
+
 //react
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter from './routers/AppRouter';
-import { startSetExpenses } from './actions/expenses';
-
+//add firebase file to the app
+import { firebase } from './firebase/firebase';
 //redux
 //provide the store to all the components of the app
 import { Provider } from 'react-redux';
+import * as moment from 'moment/moment';
+
+import AppRouter, { history } from './routers/AppRouter';
+import { startSetExpenses } from './actions/expenses';
 import configureStore from './store/configureStore';
+import { login, logout } from './actions/auth';
+
 
 //styles
 import './styles/styles.scss';
 import 'normalize.css/normalize.css';
 import 'react-dates/lib/css/_datepicker.css';
 
-//add firebase file to the app
-import './firebase/firebase';
 
-import * as moment from 'moment/moment';
+//change the datepicker to spanish
 moment.locale('es');
-
 
 const store = configureStore();
 const jsx = (
@@ -28,11 +34,33 @@ const jsx = (
     </Provider>
 );
 
+
+let hasRendered = false;
+const renderApp = () => {
+    if (!hasRendered) {
+        ReactDOM.render(jsx, document.getElementById('app'));
+        hasRendered = true;
+    }
+};
+
 //show loading screen while the data is populating into Redux from Firebase
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
-store.dispatch(startSetExpenses()).then(() => {
-    ReactDOM.render(jsx, document.getElementById('app'));
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        store.dispatch(login(user.uid));
+        store.dispatch(startSetExpenses()).then(() => {
+            renderApp();
+            //if the user is in the login page, only redirect when the user is en login page
+            if (history.location.pathname === '/') {
+                history.push('/dashboard');
+            }
+        });
+    } else {
+        store.dispatch(logout());
+        renderApp();
+        //go to login page
+        history.push('/');
+    }
 });
-
-

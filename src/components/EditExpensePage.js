@@ -4,7 +4,14 @@ import ExpenseForm from './ExpenseForm';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
 export class EditExpensePage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: false
+        }
+    };
     onSubmit = (expense) => {
+        this.setState(() => ({ isLoading: true }));
 
         new Promise((resolve, reject) => {
             resolve(this.props.startEditExpense(this.props.expense.id, expense));
@@ -13,6 +20,7 @@ export class EditExpensePage extends React.Component {
         });
     };
     onRemove = () => {
+        this.setState(() => ({ isLoading: true }));
         new Promise((resolve, reject) => {
             resolve(this.props.startRemoveExpense({ id: this.props.expense.id }));
         }).then(() => {
@@ -23,11 +31,16 @@ export class EditExpensePage extends React.Component {
         return (
             <div>
                 <h1>Edit Expense</h1>
-                <ExpenseForm
-                    submitType={'Edit'}
-                    expense={this.props.expense}
-                    onSubmit={this.onSubmit} />
-                <button onClick={this.onRemove}>Remove</button>
+                {this.state.isLoading ?
+                    <div><img src="/images/loading.gif" width="100px" height="100px" /></div> :
+                    <div>
+                        <ExpenseForm
+                            submitType={'Edit'}
+                            expense={this.props.expense}
+                            onSubmit={this.onSubmit} />
+                        <button onClick={this.onRemove}>Remove</button>
+                    </div>
+                }
             </div>
         );
     }
