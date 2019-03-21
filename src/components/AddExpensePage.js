@@ -21,7 +21,7 @@ export class AddExpensePage extends React.Component {
     };
     render() {
         return (
-            <div>
+            <div className="input-group--body">
                 <div className="page-header">
                     <div className="content-container">
                         <h1 className="page-header__title">Add Expense</h1>
@@ -33,7 +33,9 @@ export class AddExpensePage extends React.Component {
                             <img className="input-group__loader loader__image" src="/images/loader.gif" />
                         </div>
                         :
-                        <ExpenseForm submitType={'Add'} isLoading={this.isLoading} onSubmit={this.onSubmit} />
+                        <div>
+                            <ExpenseForm submitType={'Add'} isLoading={this.isLoading} onSubmit={this.onSubmit} />
+                        </div>
                     }
                 </div>
 
