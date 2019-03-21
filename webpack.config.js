@@ -25,7 +25,7 @@ module.exports = (env) => {
     const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
     return {
-        entry: './src/app.js',
+        entry: ['babel-polyfill', './src/app.js'],
         output: {
             path: publicPath,
             filename: 'bundle.js'

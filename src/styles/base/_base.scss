@@ -1,36 +1,43 @@
 /*partial file (starts with _) */
 
+//specify exactly the height of items as indicated..always add this
+* {
+  box-sizing: border-box;
+}
+
 html {
-    //font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    font-family: Helvetica, Arial, sans-serif
+  color: $dark-grey;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: $m-size;
+  line-height: 1.6;
 }
 
 h1 {
-    font-size: $m-size; //16px
+  font-size: $m-size; //16px
 }
 
 p {
-    font-size: $m-size;
+  font-size: $m-size;
 }
 
 button {
-    cursor: pointer;
-    font-size: 1.6rem;
+  cursor: pointer;
+  font-size: 1.6rem;
 }
 
 button:disabled {
-    cursor: default;
+  cursor: default;
 }
 
 h3 {
-    font-size: $m-size;
+  font-size: $m-size;
 }
 
-.is-active{
-    color:red;
-    font-weight: bold;
+.is-active {
+  color: red;
+  font-weight: bold;
 }
-

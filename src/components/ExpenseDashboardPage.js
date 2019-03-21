@@ -12,7 +12,6 @@ export class ExpenseDashboardPage extends React.Component {
     render() {
         return (
             <div>
-                <hr></hr>
                 <ExpenseSummary />
                 <ExpenseListFilters />
                 <ExpenseList />

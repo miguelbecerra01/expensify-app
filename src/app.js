@@ -16,7 +16,7 @@ import AppRouter, { history } from './routers/AppRouter';
 import { startSetExpenses } from './actions/expenses';
 import configureStore from './store/configureStore';
 import { login, logout } from './actions/auth';
-
+import LoadingPage from './components/LoadingPage';
 
 //styles
 import './styles/styles.scss';
@@ -44,7 +44,7 @@ const renderApp = () => {
 };
 
 //show loading screen while the data is populating into Redux from Firebase
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 
 firebase.auth().onAuthStateChanged((user) => {

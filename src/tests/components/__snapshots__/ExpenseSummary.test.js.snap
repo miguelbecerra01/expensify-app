@@ -1,37 +1,106 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render ExpenseSummary with no expenses 1`] = `<div />`;
+exports[`should render ExpenseSummary with no expenses 1`] = `
+<div
+  className="page-header"
+>
+  <div
+    className="content-container"
+  >
+    <h1
+      className="page-header__title"
+    >
+      Viewing 
+      <span>
+        0
+      </span>
+       
+      expense
+       totalling 
+      <span>
+        $0.00
+      </span>
+    </h1>
+    <div
+      className="page-header__actions"
+    >
+      <Link
+        className="button"
+        to="/create"
+      >
+        Add Expense
+      </Link>
+    </div>
+  </div>
+</div>
+`;
 
 exports[`should render ExpenseSummary with one expense 1`] = `
-<div>
-  <p>
-    Viewing 
-    <b>
-      1
-    </b>
-     
-    expense
-     totalling 
-    <b>
-      $10.00
-    </b>
-  </p>
+<div
+  className="page-header"
+>
+  <div
+    className="content-container"
+  >
+    <h1
+      className="page-header__title"
+    >
+      Viewing 
+      <span>
+        1
+      </span>
+       
+      expense
+       totalling 
+      <span>
+        $10.00
+      </span>
+    </h1>
+    <div
+      className="page-header__actions"
+    >
+      <Link
+        className="button"
+        to="/create"
+      >
+        Add Expense
+      </Link>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`should render ExpenseSummary with summary of expenses 1`] = `
-<div>
-  <p>
-    Viewing 
-    <b>
-      2
-    </b>
-     
-    expenses
-     totalling 
-    <b>
-      $20.00
-    </b>
-  </p>
+<div
+  className="page-header"
+>
+  <div
+    className="content-container"
+  >
+    <h1
+      className="page-header__title"
+    >
+      Viewing 
+      <span>
+        2
+      </span>
+       
+      expenses
+       totalling 
+      <span>
+        $20.00
+      </span>
+    </h1>
+    <div
+      className="page-header__actions"
+    >
+      <Link
+        className="button"
+        to="/create"
+      >
+        Add Expense
+      </Link>
+    </div>
+  </div>
 </div>
 `;

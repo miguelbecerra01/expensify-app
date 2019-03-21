@@ -18,14 +18,7 @@ export default class ExpenseForm extends React.Component {
             submitType: props.submitType === 'Add' ? 'Add' : 'Edit'
         };
     }
-    // state = {
-    //     description: '',
-    //     note: '',
-    //     amount: '',
-    //     createdAt: moment(),
-    //     calendarFocused: false,
-    //     error: false
-    // };
+
     onDescriptionChange = (e) => {
         const description = e.target.value;
         this.setState(() => {
@@ -77,41 +70,43 @@ export default class ExpenseForm extends React.Component {
     };
     render() {
         return (
-            <div>
+            <form className="form" onSubmit={this.onSubmit}>
+                {this.state.error && <p className="form__error">{this.state.error}</p>}
+                <input
+                    type="text"
+                    name="description"
+                    placeholder="Description"
+                    autoFocus
+                    className="text-input"
+                    value={this.state.description}
+                    onChange={this.onDescriptionChange} />
+                <input
+                    type="text"
+                    placeholder="Amount"
+                    className="text-input"
+                    value={this.state.amount}
+                    onChange={this.onAmountChange} />
+                <SingleDatePicker
+                    date={this.state.createdAt}
+                    onDateChange={this.onDateChange}
+                    focused={this.state.calendarFocused}
+                    onFocusChange={this.onFocusChange}
+                    numberOfMonths={1}
+                    firstDayOfWeek={1}
+                    small={true}
+                    isOutsideRange={() => false} />
+                <textarea
+                    className="textarea"
+                    placeholder="Add a note for your expense (optional)"
+                    onChange={this.onNoteChange}
+                    value={this.state.note}
+                >
 
-                {this.state.error && <p>{this.state.error}</p>}
-                <form onSubmit={this.onSubmit}>
-                    <input
-                        type="text"
-                        name="description"
-                        placeholder="Description"
-                        autoFocus
-                        value={this.state.description}
-                        onChange={this.onDescriptionChange} />
-                    <input
-                        type="text"
-                        placeholder="Amount"
-                        value={this.state.amount}
-                        onChange={this.onAmountChange} />
-                    <SingleDatePicker
-                        date={this.state.createdAt}
-                        onDateChange={this.onDateChange}
-                        focused={this.state.calendarFocused}
-                        onFocusChange={this.onFocusChange}
-                        numberOfMonths={1}
-                        firstDayOfWeek={1}
-                        small={true}
-                        isOutsideRange={() => false} />
-                    <textarea
-                        placeholder="Add a note for your expense (optional)"
-                        onChange={this.onNoteChange}
-                        value={this.state.note}
-                    >
-
-                    </textarea>
-                    <button >{this.state.submitType} Expense</button>
-                </form>
-            </div>
+                </textarea>
+                <div>
+                    <button className="button" >{this.state.submitType} Expense</button>
+                </div>
+            </form>
         );
     }
 }

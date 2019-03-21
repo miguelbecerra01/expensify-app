@@ -30,17 +30,26 @@ export class EditExpensePage extends React.Component {
     render() {
         return (
             <div>
-                <h1>Edit Expense</h1>
-                {this.state.isLoading ?
-                    <div><img src="/images/loading.gif" width="100px" height="100px" /></div> :
-                    <div>
-                        <ExpenseForm
-                            submitType={'Edit'}
-                            expense={this.props.expense}
-                            onSubmit={this.onSubmit} />
-                        <button onClick={this.onRemove}>Remove</button>
+                <div className="page-header">
+                    <div className="content-container">
+                        <h1 className="page-header__title">Edit Expense</h1>
                     </div>
-                }
+                </div>
+                <div className="content-container">
+                    {this.state.isLoading ?
+                        <div className="input-group__loader loader__image">
+                            <img className="input-group__loader loader__image" src="/images/loader.gif" />
+                        </div>
+                        :
+                        <div>
+                            <ExpenseForm
+                                submitType={'Edit'}
+                                expense={this.props.expense}
+                                onSubmit={this.onSubmit} />
+                            <button className="button--secondary" onClick={this.onRemove}>Remove Expense</button>
+                        </div>
+                    }
+                </div>
             </div>
         );
     }

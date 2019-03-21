@@ -1,62 +1,116 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render ExpenseList with empty message 1`] = `
-<div>
-  <p>
-    No expenses yet ;-(
-  </p>
+<div
+  className="content-container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-mobile"
+    >
+      Expenses
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Expense
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Amount
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <div
+      className="list-item list-item--message"
+    >
+      <span>
+        No expenses yet ;-(
+      </span>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`should render ExpenseList with expenses 1`] = `
-<div>
-  <Connect(ExpenseListItem)
-    amount={195}
-    createdAt={0}
-    description="Gum"
-    id="1"
-    key="1"
-    note=""
-  />
-  <Connect(ExpenseListItem)
-    amount={109500}
-    createdAt={-345600000}
-    description="Rent"
-    id="2"
-    key="2"
-    note=""
-  />
-  <Connect(ExpenseListItem)
-    amount={4500}
-    createdAt={345600000}
-    description="Credit Card"
-    id="3"
-    key="3"
-    note="month payment"
-  />
-  <Connect(ExpenseListItem)
-    amount={100}
-    createdAt={0}
-    description="Bus Ticket"
-    id="4"
-    key="4"
-    note=""
-  />
-  <Connect(ExpenseListItem)
-    amount={200}
-    createdAt={0}
-    description="Water Bottle"
-    id="5"
-    key="5"
-    note=""
-  />
-  <Connect(ExpenseListItem)
-    amount={300}
-    createdAt={0}
-    description="Lunch"
-    id="6"
-    key="6"
-    note=""
-  />
+<div
+  className="content-container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-mobile"
+    >
+      Expenses
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Expense
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Amount
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <Connect(ExpenseListItem)
+      amount={195}
+      createdAt={0}
+      description="Gum"
+      id="1"
+      key="1"
+      note=""
+    />
+    <Connect(ExpenseListItem)
+      amount={109500}
+      createdAt={-345600000}
+      description="Rent"
+      id="2"
+      key="2"
+      note=""
+    />
+    <Connect(ExpenseListItem)
+      amount={4500}
+      createdAt={345600000}
+      description="Credit Card"
+      id="3"
+      key="3"
+      note="month payment"
+    />
+    <Connect(ExpenseListItem)
+      amount={100}
+      createdAt={0}
+      description="Bus Ticket"
+      id="4"
+      key="4"
+      note=""
+    />
+    <Connect(ExpenseListItem)
+      amount={200}
+      createdAt={0}
+      description="Water Bottle"
+      id="5"
+      key="5"
+      note=""
+    />
+    <Connect(ExpenseListItem)
+      amount={300}
+      createdAt={0}
+      description="Lunch"
+      id="6"
+      key="6"
+      note=""
+    />
+  </div>
 </div>
 `;

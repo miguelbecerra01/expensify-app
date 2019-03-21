@@ -22,11 +22,20 @@ export class AddExpensePage extends React.Component {
     render() {
         return (
             <div>
-                <h1>Add Expense Pages</h1>
-                {this.state.isLoading ?
-                    <div><img src="/images/loading.gif" width="100px" height="100px" /></div> :
-                    <ExpenseForm submitType={'Add'} isLoading={this.isLoading} onSubmit={this.onSubmit} />
-                }
+                <div className="page-header">
+                    <div className="content-container">
+                        <h1 className="page-header__title">Add Expense</h1>
+                    </div>
+                </div>
+                <div className="content-container">
+                    {this.state.isLoading ?
+                        <div className="input-group__loader loader__image">
+                            <img className="input-group__loader loader__image" src="/images/loader.gif" />
+                        </div>
+                        :
+                        <ExpenseForm submitType={'Add'} isLoading={this.isLoading} onSubmit={this.onSubmit} />
+                    }
+                </div>
 
             </div>
         );
